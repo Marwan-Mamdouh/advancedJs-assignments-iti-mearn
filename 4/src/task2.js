@@ -8,6 +8,13 @@ function Vehicle(speed, color) {
   this.turnLeft = function () {};
   this.goBackward = function (speed, accel) {};
   this.goForward = function (speed, accel) {};
+
+  this.toString = function () {
+    console.log(speed, color);
+  };
+  this.valueOf = function () {
+    return [speed, color];
+  };
 }
 
 function Bicycle(speed, color) {
