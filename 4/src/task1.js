@@ -8,19 +8,25 @@ function Shape(width, height) {
 
   this.width = width;
   this.height = height;
-
-  this.toString = function () {
-    console.log(
-      `shape type is ${this.constructor.name} ,width: ${this.width}, 
-      height: ${this.height}, area:${this.area()} , 
-      perimeter: ${this.perimeter()}`
-    );
-  };
-
-  this.valueOf = function () {
-    return this.area();
-  };
 }
+
+Shape.prototype.area = function () {
+  return this.height * this.width;
+};
+
+Shape.prototype.perimeter = function () {
+  return (this.width + this.height) * 2;
+};
+
+Shape.prototype.toString = function () {
+  console.log(`shape type is ${this.constructor.name}, 
+    width: ${this.width}, height: ${this.height}, area:${this.area()} , 
+      perimeter: ${this.perimeter()}`);
+};
+
+Shape.prototype.valueOf = function () {
+  return this.area();
+};
 
 function Rectangle(width, height) {
   if (width < 0 && height < 0) {
@@ -40,13 +46,6 @@ function Rectangle(width, height) {
   }
 
   Shape.call(this, width, height);
-
-  this.area = function () {
-    return this.height * this.width;
-  };
-  this.perimeter = function () {
-    return (width + height) * 2;
-  };
 }
 
 Rectangle.prototype = Object.create(Shape.prototype);
@@ -70,12 +69,12 @@ const sqr = new Square(5);
 // const rect3 = new Shape();
 
 rect1.toString();
-console.log(rect1.area());
-console.log(rect1.perimeter());
+// console.log(rect1.area());
+// console.log(rect1.perimeter());
 
 sqr.toString();
-console.log(sqr.area());
-console.log(sqr.perimeter());
+// console.log(sqr.area());
+// console.log(sqr.perimeter());
 
 // console.log("rect + square: " + parseInt(rect1 + sqr));
 console.log("rect + square: " + Number(rect1 + sqr));

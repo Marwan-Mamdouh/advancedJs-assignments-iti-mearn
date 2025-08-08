@@ -4,31 +4,33 @@ function Box(height, width, length, material) {
   this.len = length;
   this.material = material;
   this.content = [];
-
-  this.count = function () {
-    return this.content.length;
-  };
-
-  this.add = function (book) {
-    this.content.push(book);
-  };
-
-  this.delete = function (bookTitle) {
-    if (!this.content.length) {
-      throw new Error("the box is empty.");
-    }
-    for (let index = 0; index < this.content.length; index++) {
-      if (this.content[index].title === bookTitle) {
-        this.content.splice(index, 1);
-        return;
-      }
-    }
-  };
-
-  this.toString = function () {
-    console.log(this.content);
-  };
 }
+
+Box.prototype.count = function () {
+  return this.content.length;
+};
+
+Box.prototype.add = function (book) {
+  this.content.push(book);
+};
+
+Box.prototype.delete = function (bookTitle) {
+  if (!this.content.length) {
+    throw new Error("the box is empty.");
+  }
+  for (let index = 0; index < this.content.length; index++) {
+    if (this.content[index].title === bookTitle) {
+      this.content.splice(index, 1);
+      return;
+    }
+  }
+};
+
+Box.prototype.toString = function () {
+  for (let index = 0; index < this.content.length; index++) {
+    console.log(this.content[index].title);
+  }
+};
 
 function Book(
   title,
@@ -44,11 +46,11 @@ function Book(
   this.numOfPages = numOfPages;
   this.publisher = publisher;
   this.numOfCopies = numOfCopies;
-
-  this.toString = function () {
-    console.log(`book title: ${this.bookTitle}`);
-  };
 }
+
+Book.prototype.toString = function () {
+  console.log(`book title: ${this.title}`);
+};
 
 const book1 = new Book("song of ice and fire");
 const book2 = new Book("storm of swords");
@@ -68,3 +70,5 @@ console.log("----------------------------------------------------------------");
 box.delete("storm of swords");
 
 box.toString();
+
+book1.toString();
